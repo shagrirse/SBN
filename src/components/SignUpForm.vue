@@ -8,7 +8,7 @@ function onSubmit(event: Event) {
     const first_name = form.first_name.value;
     const last_name = form.last_name.value;
     const user = { email, password, first_name, last_name };
-    fetch(`${import.meta.env.VITE_FASTIFY}/api/sign-up`, {
+    fetch(`${import.meta.env.VITE_FASTIFY}/api/users/sign-up`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
@@ -47,7 +47,7 @@ function onSubmit(event: Event) {
                 placeholder="••••••••"
                 required
             />
-            <label className="text-md" htmlFor="password">
+            <label className="text-md" htmlFor="first_name">
                 First Name
             </label>
             <input
@@ -57,8 +57,8 @@ function onSubmit(event: Event) {
                 placeholder="John"
                 required
             />
-            <label className="text-md" htmlFor="password">
-                Password
+            <label className="text-md" htmlFor="last_name">
+                Last Name
             </label>
             <input
                 className="rounded-md px-4 py-2 bg-inherit border mb-3"
