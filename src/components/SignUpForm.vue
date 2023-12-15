@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 function onSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;

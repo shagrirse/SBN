@@ -17,6 +17,7 @@ type Actions = {
     saveRedirectRoute(route: Partial<RouteLocation>): void;
     loadRedirectRoute(): void;
     clearRedirectRoute(): void;
+    getCookie(): string | undefined;
 };
 
 export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
@@ -34,7 +35,17 @@ export const useAuthStore = defineStore<'auth', State, Getters, Actions>(
     },
     actions: {
         async loadUser() {
-            this.currentUser = await supabase.auth.getUser();
+            const cookie = this.getCookie();
+            if (cookie) {
+                this.currentUser = await supabase.auth.getUser(cookie);
+            }
+        },
+        getCookie() {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; access_token=`);
+            if (parts.length === 2) return parts.pop()?.split(';').shift();
+            // Add a default return value if the condition is not met
+            return undefined;
         },
         clearUser() {
             this.currentUser = null;
