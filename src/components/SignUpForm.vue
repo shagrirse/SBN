@@ -14,13 +14,14 @@ function onSubmit(event: Event) {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
+        console.log(data)
+        // Redirect to the sign in page
+        window.location.href = '/signin';
     });
 }
 </script>
 
 <template>
-    
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
 
         <form

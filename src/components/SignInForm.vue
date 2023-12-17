@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 function onSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -16,7 +15,7 @@ function onSubmit(event: Event) {
         body: JSON.stringify(user),
     })
     .then((response) => response.json())
-        .then((data) => {
+        .then(() => {
             // Redirect to the home page
             window.location.href = '/';
     });
@@ -54,6 +53,9 @@ function onSubmit(event: Event) {
                 Sign In
             </button>
             <!-- Create a sign-up button -->
+            <a href="/signup" className="text-center text-md">
+                Don't have an account? Sign up here.
+            </a>
         </form>
     </div>
 </template>
